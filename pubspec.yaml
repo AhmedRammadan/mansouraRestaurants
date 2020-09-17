@@ -1,0 +1,51 @@
+name: mansourarestaurants
+description: A new Flutter application.
+
+version: 1.0.0+2
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+  shared_preferences: ^0.5.6
+  device_id: ^0.2.0
+  http: ^0.12.0+4
+  url_launcher: ^5.4.5
+  carousel_slider: ^1.4.1
+  share: ^0.6.3+5
+  flutter_rating_bar: ^3.0.1+1
+  photo_view: ^0.9.2
+  connectivity:
+  maps_launcher: ^1.2.0
+  file_picker: ^1.5.0+2
+  fluttertoast: ^4.0.1
+  intro_slider: ^2.3.1
+  location: ^2.3.5
+  geocoder: ^0.2.1
+  
+  flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/
+    - lang/
+
+  fonts:
+    - family: GE_DINAR_ONE_MEDIUM
+      fonts:
+        - asset: fonts/GE_DINAR_ONE_MEDIUM.OTF
+    - family: ADVANCE
+      fonts:
+        - asset: fonts/ADVANCE.TTF
