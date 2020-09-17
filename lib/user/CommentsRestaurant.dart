@@ -71,151 +71,149 @@ class _CommentsRestaurantState extends State<CommentsRestaurant> {
       body: RefreshIndicator(
         key: _refreshIndicatorkey,
         onRefresh: _onRefresh,
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Container(
-                  margin: EdgeInsets.only(top: 30, right: 2, left: 10),
-                  child: MyAppbar(context, _key, false)),
-              Container(
-                height: MediaQuery.of(context).size.height,
-                margin: EdgeInsets.symmetric(vertical: 10),
-                child: Stack(
-                  children: <Widget>[
-                    Positioned(
-                      top: 15,
-                      left: 0,
-                      right: 0,
-                      child: Container(
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 15,
-                        ),
-                        padding: EdgeInsets.only(
-                          top: 5,
-                        ),
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height / 1.35,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: isLadingComments
-                                  ? _ladingWidget()
-                                  : Comments.isEmpty
-                                      ? Container()
-                                      : ListView(
-                                          children:
-                                              Comments.map((Comment comment) {
-                                            return reviewCard(comment);
-                                          }).toList(),
-                                        ),
+        child: Column(
+          children: <Widget>[
+            Container(
+                margin: EdgeInsets.only(top: 20, right: 2, left: 10),
+                child: MyAppbar(context, _key, false)),
+            Container(
+              height: MediaQuery.of(context).size.height-115,
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: 15,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 15,
+                      ),
+                      padding: EdgeInsets.only(
+                        top: 5,
+                      ),
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 1.35,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Expanded(
+                            child: isLadingComments
+                                ? _ladingWidget()
+                                : Comments.isEmpty
+                                ? Container()
+                                : ListView(
+                              children:
+                              Comments.map((Comment comment) {
+                                return reviewCard(comment);
+                              }).toList(),
                             ),
-                            Container(
-                              alignment: Alignment.bottomCenter,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 5),
-                              //padding: EdgeInsets.only(bottom: 0),
-                              height: 150,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage("assets/Group 4.png"),
-                                      fit: BoxFit.fill)),
-                              child: InkWell(
-                                  onTap: () {
-                                    print("sdfdsf");
-                                  },
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: RatingBar(
-                                          onRatingUpdate: (double value) {
-                                            print(value);
-                                            comment.star = value.toString();
-                                          },
-                                          itemSize: 15,
-                                          initialRating:
-                                              double.parse(comment.star),
-                                          direction: Axis.horizontal,
-                                          itemCount: 5,
-                                          itemPadding:
-                                              EdgeInsets.only(right: 4.0),
-                                          itemBuilder: (context, _) => Icon(
-                                            Icons.star,
-                                            color: Colors.amber,
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          child: TextField(
-                                            decoration: InputDecoration(
-                                              border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
-                                                borderSide: const BorderSide(
-                                                  color: textColor,
-                                                  width: 1.0,
-                                                ),
-                                              ),
-                                              enabledBorder:
-                                                  const OutlineInputBorder(
-                                                borderSide: const BorderSide(
-                                                  color: textColor,
-                                                  width: 2.0,
-                                                ),
-                                              ),
-                                              labelStyle:
-                                                  TextStyle(color: textColor),
-                                            ),
-                                            controller: controller,
-                                            onChanged: (value) {
-                                              comment.comment = value;
-                                            },
-                                          )),
-                                      InkWell(
-                                        onTap: () async {
-                                          comment.resturantId =
-                                              widget.restaurant.id;
-                                          progress(
-                                              context: context,
-                                              isLoading: true);
-                                          bool result =
-                                              await comment.createComment();
-                                          if (result) {
-                                            setState(() {
-                                              controller.clear();
-                                              comment.star = '3';
-                                              Comments.insert(0, comment);
-                                            });
-                                          }
-                                          progress(
-                                              context: context,
-                                              isLoading: false);
+                          ),
+                          Container(
+                            alignment: Alignment.bottomCenter,
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 5),
+                            //padding: EdgeInsets.only(bottom: 0),
+                            height: 150,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage("assets/Group 4.png"),
+                                    fit: BoxFit.fill)),
+                            child: InkWell(
+                                onTap: () {
+                                  print("sdfdsf");
+                                },
+                                child: Column(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 10),
+                                      child: RatingBar(
+                                        onRatingUpdate: (double value) {
+                                          print(value);
+                                          comment.star = value.toString();
                                         },
-                                        child: Container(
-                                          alignment: Alignment.center,
-                                          height: 40,
-                                          width: 140,
-                                          child: Text(
-                                            appLocalizations.translate("send"),//    "ارسال",
-                                            style: TextStyle(
-                                                color: Colors.white,),
-                                          ),
+                                        itemSize: 15,
+                                        initialRating:
+                                        double.parse(comment.star),
+                                        direction: Axis.horizontal,
+                                        itemCount: 5,
+                                        itemPadding:
+                                        EdgeInsets.only(right: 4.0),
+                                        itemBuilder: (context, _) => Icon(
+                                          Icons.star,
+                                          color: Colors.amber,
                                         ),
                                       ),
-                                    ],
-                                  )
-                                  /* Container(
+                                    ),
+                                    Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        child: TextField(
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(15),
+                                              borderSide: const BorderSide(
+                                                color: textColor,
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                            enabledBorder:
+                                            const OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: textColor,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            labelStyle:
+                                            TextStyle(color: textColor),
+                                          ),
+                                          controller: controller,
+                                          onChanged: (value) {
+                                            comment.comment = value;
+                                          },
+                                        )),
+                                    InkWell(
+                                      onTap: () async {
+                                        comment.resturantId =
+                                            widget.restaurant.id;
+                                        progress(
+                                            context: context,
+                                            isLoading: true);
+                                        bool result =
+                                        await comment.createComment();
+                                        if (result) {
+                                          setState(() {
+                                            controller.clear();
+                                            comment.star = '3';
+                                            Comments.insert(0, comment);
+                                          });
+                                        }
+                                        progress(
+                                            context: context,
+                                            isLoading: false);
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        height: 40,
+                                        width: 140,
+                                        child: Text(
+                                          appLocalizations.translate("send"),//    "ارسال",
+                                          style: TextStyle(
+                                            color: Colors.white,),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              /* Container(
                                   alignment: Alignment.center,
                                   height:40,
                                   width: 140,
@@ -227,36 +225,35 @@ class _CommentsRestaurantState extends State<CommentsRestaurant> {
                                     ),
                                   ),
                                 ),*/
-                                  ),
-                            )
-                          ],
-                        ),
+                            ),
+                          )
+                        ],
                       ),
                     ),
-                    Container(
-                      height: 25,
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.symmetric(
-                          horizontal: MediaQuery.of(context).size.width / 12),
-                     // padding: EdgeInsets.symmetric(vertical: 5),
-                      decoration: BoxDecoration(
-                        color: textColor,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Text(
-                        appLocalizations.translate("Comments"),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
+                  ),
+                  Container(
+                    height: 25,
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width / 12),
+                    // padding: EdgeInsets.symmetric(vertical: 5),
+                    decoration: BoxDecoration(
+                      color: textColor,
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Text(
+                      appLocalizations.translate("Comments"),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
                           color: Colors.white,
                           fontFamily: ""
-                        ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

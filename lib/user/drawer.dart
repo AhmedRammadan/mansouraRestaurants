@@ -46,7 +46,9 @@ class _userDrawerState extends State<userDrawer> {
                     color: textColor, borderRadius: BorderRadius.circular(25)),
                 margin: EdgeInsets.symmetric(horizontal: 20),
                 height: MediaQuery.of(context).size.height / 1.68,
-                child: ListView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     _item(
                         index: 1,

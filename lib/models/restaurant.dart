@@ -97,11 +97,13 @@ class Restaurant {
   }
 
   factory Restaurant.fromJson(json) {
+    String name = json['resturant_name'].toString().replaceAll("amp;", '');
+    String desc = json['resturant_desc'].toString().replaceAll("amp;", '');
     return Restaurant(
       id: json['resturant_id'],
       position: json['position'],
-      name: json['resturant_name'],
-      desc: json['resturant_desc'],
+      name: name,
+      desc:desc,
       logo: json['resturant_logo'],
       caver: json['resturant_caver'],
       rate: json['resturant_rate'],

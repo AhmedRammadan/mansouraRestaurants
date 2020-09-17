@@ -46,6 +46,10 @@ PODS:
     - Flutter
   - fluttertoast (0.0.2):
     - Flutter
+  - geocoder (0.0.1):
+    - Flutter
+  - location (0.0.1):
+    - Flutter
   - Reachability (3.2)
   - SDWebImage (5.7.3):
     - SDWebImage/Core (= 5.7.3)
@@ -76,6 +80,8 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_plugin_android_lifecycle (from `.symlinks/plugins/flutter_plugin_android_lifecycle/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - geocoder (from `.symlinks/plugins/geocoder/ios`)
+  - location (from `.symlinks/plugins/location/ios`)
   - share (from `.symlinks/plugins/share/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - shared_preferences_macos (from `.symlinks/plugins/shared_preferences_macos/ios`)
@@ -108,6 +114,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_plugin_android_lifecycle/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
+  geocoder:
+    :path: ".symlinks/plugins/geocoder/ios"
+  location:
+    :path: ".symlinks/plugins/location/ios"
   share:
     :path: ".symlinks/plugins/share/ios"
   shared_preferences:
@@ -134,6 +144,8 @@ SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_plugin_android_lifecycle: dc0b544e129eebb77a6bfb1239d4d1c673a60a35
   fluttertoast: b644586ef3b16f67fae9a1f8754cef6b2d6b634b
+  geocoder: 3cfab70531a0b367e917bafe82df4c30f6d4c45a
+  location: 3a2eed4dd2fab25e7b7baf2a9efefe82b512d740
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: 97351f6582ceca541ea294ba66a1fcb342a331c2
   SDWebImageFLPlugin: 6c2295fb1242d44467c6c87dc5db6b0a13228fd8

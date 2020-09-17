@@ -69,7 +69,7 @@ class IntroScreenState extends State<IntroScreen> {
           ),
         );
       }).toList(),
-      height: MediaQuery.of(context).size.height - 90,
+      height: MediaQuery.of(context).size.height - 40,
       aspectRatio: 0,
       viewportFraction: .999,
       initialPage: 0,
@@ -90,48 +90,25 @@ class IntroScreenState extends State<IntroScreen> {
               children: <Widget>[
                 Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
                   _carouselSlider,
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Container(
-                      color: textColor,
-                      height: 90,
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: sliders.map((url) {
-                          int index = sliders.indexOf(url);
-                          return Container(
-                            width: 15.0,
-                            height: 15.0,
-                            margin: EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 2.0),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: _current == index
-                                    ? accentColor //Color.fromRGBO(0, 0, 0, 0.9)
-                                    : Colors
-                                        .white //Color.fromRGBO(0, 0, 0, 0.4),
-                                ),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                  ),
-                ]),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Container(
-                    height: 30,
-                    alignment: Alignment.topRight,
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => UserHome()));
-                      },
-                      child: AppLocalizations.of(context).locale.languageCode ==
-                              "en"
-                          ? Row(
+                  Container(
+                    color: textColor,
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 30,
+                          alignment: Alignment.center,
+                          margin:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => UserHome()));
+                            },
+                            child: AppLocalizations.of(context)
+                                .locale
+                                .languageCode ==
+                                "en"
+                                ? Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 Text(
@@ -149,7 +126,7 @@ class IntroScreenState extends State<IntroScreen> {
                                 ),
                               ],
                             )
-                          : Row(
+                                : Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 Image.asset(
@@ -167,9 +144,40 @@ class IntroScreenState extends State<IntroScreen> {
                                 ),
                               ],
                             ),
+                          ),
+                        ),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Container(
+                              height: 40,
+                              margin: EdgeInsets.symmetric(horizontal: 5),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: sliders.map((url) {
+                                  int index = sliders.indexOf(url);
+                                  return Container(
+                                    width: 10.0,
+                                    height: 10.0,
+                                    margin: EdgeInsets.symmetric(
+                                        vertical: 10.0, horizontal: 2.0),
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: _current == index
+                                            ? accentColor //Color.fromRGBO(0, 0, 0, 0.9)
+                                            : Colors
+                                            .white //Color.fromRGBO(0, 0, 0, 0.4),
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
+                ]),
               ],
             ),
     );

@@ -69,16 +69,16 @@ class _UserHomeState extends State<UserHome> {
         onRefresh: _onRefresh,
         child: SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.only(top: 50, right: 10, left: 10),
+            margin: EdgeInsets.only(top: 25, right: 10, left: 10),
             child: Column(
               children: <Widget>[
                 MyAppbar(context, _key, true),
                 Container(
-                  margin: EdgeInsets.all(10),
+                  margin: EdgeInsets.all(5),
                   decoration: BoxDecoration(
                       color: textColor,
-                      borderRadius: BorderRadius.all(Radius.circular(25))),
-                  height: MediaQuery.of(context).size.height - 155,
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  height: MediaQuery.of(context).size.height - 115,
                   child: Container(
                       alignment: Alignment.topCenter,
                       height: MediaQuery.of(context).size.height / 13,
@@ -93,7 +93,7 @@ class _UserHomeState extends State<UserHome> {
                                 appLocalizations
                                     .translate("Find your restaurant"),
                                 style: TextStyle(
-                                    color: accentColor, fontSize: 18)),
+                                    color: accentColor)),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
@@ -215,7 +215,7 @@ class _UserHomeState extends State<UserHome> {
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 10),
                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height - 225,
+                            height: MediaQuery.of(context).size.height - 185,
                             child: isLading
                                 ? Container(
                                     alignment: Alignment.bottomCenter,
@@ -227,7 +227,7 @@ class _UserHomeState extends State<UserHome> {
                                   )
                                 : GridView.count(
                                     crossAxisCount: 3,
-                                    childAspectRatio: 1.0,
+                                    childAspectRatio: 0.8,
                                     //padding: const EdgeInsets.all(4.0),
                                     mainAxisSpacing: 0,
                                     crossAxisSpacing: 0,

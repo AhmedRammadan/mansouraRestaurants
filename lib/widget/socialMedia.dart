@@ -9,7 +9,7 @@ class SocialMedia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: EdgeInsets.only(bottom: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -19,7 +19,7 @@ class SocialMedia extends StatelessWidget {
             },
             child: Image.asset(
               "assets/WhatsApp.png",
-              height: 30,
+              height: 25,
             ),
           ),
           SizedBox(
@@ -33,7 +33,7 @@ class SocialMedia extends StatelessWidget {
             },
             child: Image.asset(
               "assets/Facebook.png",
-              height: 30,
+              height: 25,
             ),
           ),
           SizedBox(
@@ -47,7 +47,7 @@ class SocialMedia extends StatelessWidget {
             },
             child: Image.asset(
               "assets/Instagram.png",
-              height: 30,
+              height: 25,
             ),
           ),
         ],
