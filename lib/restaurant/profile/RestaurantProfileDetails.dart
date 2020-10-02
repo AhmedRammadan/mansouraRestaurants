@@ -4,30 +4,31 @@ import 'package:mansourarestaurants/models/comment.dart';
 import 'package:mansourarestaurants/models/maps.dart';
 import 'package:mansourarestaurants/models/numbers.dart';
 import 'package:mansourarestaurants/models/restaurant.dart';
+import 'package:mansourarestaurants/restaurant/MapsScreen.dart';
+import 'package:mansourarestaurants/restaurant/profile/CommentsRestaurantProfile.dart';
 import 'package:mansourarestaurants/widget/headRestaurantDetails.dart';
 import 'package:mansourarestaurants/widget/restaurantMenu.dart';
 import 'package:mansourarestaurants/widget/restaurantReviews.dart';
 import 'package:maps_launcher/maps_launcher.dart';
-import '../lang/app_localizations.dart';
-
-import '../general.dart';
+import '../../lang/app_localizations.dart';
+import '../../general.dart';
 import 'package:mansourarestaurants/general.dart';
 import 'package:mansourarestaurants/widget/myAppbar.dart';
 import 'package:mansourarestaurants/widget/socialMedia.dart';
-import 'CommentsRestaurant.dart';
-import 'MenuRestaurant.dart';
-import 'drawer.dart';
+import '../drawer.dart';
+import '../numbersScreen.dart';
+import 'MenuRestaurantProfile.dart';
 
-class RestaurantDetails extends StatefulWidget {
+class RestaurantProfileDetails extends StatefulWidget {
   Restaurant restaurant;
 
-  RestaurantDetails(this.restaurant);
+  RestaurantProfileDetails(this.restaurant);
 
   @override
-  _RestaurantDetailsState createState() => _RestaurantDetailsState();
+  _RestaurantProfileDetailsState createState() => _RestaurantProfileDetailsState();
 }
 
-class _RestaurantDetailsState extends State<RestaurantDetails> {
+class _RestaurantProfileDetailsState extends State<RestaurantProfileDetails> {
   GlobalKey<RefreshIndicatorState> _refreshIndicatorkey =
       GlobalKey<RefreshIndicatorState>();
 
@@ -46,8 +47,8 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
     return Scaffold(
       backgroundColor: accentColor,
       key: _key,
-      drawer: userDrawer(),
-      bottomNavigationBar: SocialMedia2(),
+      drawer: RestaurantDrawer(),
+      bottomNavigationBar: SocialMedia(),
       body: RefreshIndicator(
         key: _refreshIndicatorkey,
         onRefresh: _onRefresh,
@@ -105,7 +106,7 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            MenuRestaurant(widget.restaurant)));
+                                            MenuRestaurantProfile(globalRestaurant)));
                               },
                               child: Container(
                                 width: 320,
@@ -278,25 +279,40 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
         print(index);
         switch (index) {
           case 0:
-            if (widget.restaurant.numbers.isNotEmpty)
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        NumbersScreen()));
+         /*   if (widget.restaurant.numbers.isNotEmpty)
               numbersDeliveryAlert(
-                  context: context, numbers: widget.restaurant.numbers);
+                  context: context, numbers: widget.restaurant.numbers);*/
             break;
           case 1:
-            if (widget.restaurant.maps.isNotEmpty)
-              mpaAlert(context: context, maps: widget.restaurant.maps);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        MapsScreen()));
+           /* if (widget.restaurant.maps.isNotEmpty)
+              mpaAlert(context: context, maps: widget.restaurant.maps);*/
             break;
           case 2:
-            if (widget.restaurant.numbers.isNotEmpty)
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        NumbersScreen()));
+          /*  if (widget.restaurant.numbers.isNotEmpty)
               numbersComplaintAlert(
-                  context: context, numbers: widget.restaurant.numbers);
+                  context: context, numbers: widget.restaurant.numbers);*/
             break;
           case 3:
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        CommentsRestaurant(widget.restaurant)));
+                        CommentsRestaurantProfile(widget.restaurant)));
             break;
         }
       },

@@ -142,5 +142,16 @@
   "Delivery number is required": "Delivery number is required",
   "Complaints number is required": "Complaints number is required",
   "Address is required on the map": "Address is required on the map",
-  "Menu photos are required to be attached": "Menu photos are required to be attached"
+  "Menu photos are required to be attached": "Menu photos are required to be attached",
+  "Profile": "Profile",
+  "name phone": "name",
+  "phone number": "phone number",
+  "type": "type",
+  "Or you can enter your current location using GPS": "Or you can enter your current location using GPS",
+  "name is required": "name is required",
+  "Latitude is required": "Latitude is required",
+  "Longitude is required": "Longitude is required",
+  "Latitude":  "Latitude",
+  "Longitude":  "Longitude"
+
 }

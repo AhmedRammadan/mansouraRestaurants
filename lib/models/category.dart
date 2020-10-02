@@ -10,8 +10,8 @@ class Category {
   factory Category.fromJson(json){
     return Category(
       categoryId: json['category_id'],
-      categoryNameAR: json['category_name_ar'],
-      categoryNameEN: json['category_name_en'],
+      categoryNameAR: json['category_name_ar'].toString().replaceAll("amp;", ''),
+      categoryNameEN: json['category_name_en'].toString().replaceAll("amp;", ''),
       categoryImage: json['category_image'],
     );
   }

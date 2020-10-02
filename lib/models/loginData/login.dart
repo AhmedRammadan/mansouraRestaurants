@@ -15,7 +15,7 @@ class Login {
   Future<bool> setLogin() async {
     http.Response response = await http.post("$domain/restaurant/login.php", body: {
       "emailORPhoneNumber": this.restaurantName,
-      "owner_password": this.password,
+      "password": this.password,
     });
     print(response.body);
     var res = json.decode(response.body);

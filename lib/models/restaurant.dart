@@ -41,6 +41,7 @@ class Restaurant {
   String latitude;
   String longitude;
   String addressInMap;
+
   Restaurant(
       {this.id = '',
       this.position = '',
@@ -103,7 +104,7 @@ class Restaurant {
       id: json['resturant_id'],
       position: json['position'],
       name: name,
-      desc:desc,
+      desc: desc,
       logo: json['resturant_logo'],
       caver: json['resturant_caver'],
       rate: json['resturant_rate'],
@@ -111,12 +112,14 @@ class Restaurant {
       endTime: json['end_time'],
       deliveryTime: json['delivery_time'],
       categoryID: json['category_id'],
-      categoryNameEN: json['category_name_en'],
-      categoryNameAR: json['category_name_ar'],
+      categoryNameEN:
+          json['category_name_en'].toString().replaceAll("amp;", ''),
+      categoryNameAR:
+          json['category_name_ar'].toString().replaceAll("amp;", ''),
       ownerEmail: json['owner_email'],
       ownerPassword: json['owner_password'],
-      ownerName: json['owner_name'],
-      ownerNumber: json['owner_number'],
+      ownerName: json['owner_name'].toString().replaceAll("amp;", ''),
+      ownerNumber: json['owner_number'].toString().replaceAll("amp;", ''),
       isActivate: json['is_activate'],
       isFamous: json['is_famous'],
       createDate: json['create_date'],
@@ -176,13 +179,12 @@ Future<List<Restaurant>> fetchAllRestaurants() async {
       .post("$domain/restaurant/read.php", body: {"restaurant": "restaurant"});
   print(response.body);
   var res = json.decode(response.body);
-  print(res);
+ // print(res);
   List data = res['restaurant'];
   for (var item in data) {
     Restaurant restaurant = Restaurant.fromJson(item);
+    print(restaurant.position);
     restaurants.add(restaurant);
-    //restaurants[int.parse(restaurant.position)] = restaurant;
-    // restaurants.insert(int.parse(restaurant.position),restaurant);
   }
   return restaurants;
 }
@@ -197,7 +199,9 @@ Future<List<Restaurant>> fetchRestaurants(String isFamous) async {
   print(res);
   List data = res['restaurant'];
   for (var item in data) {
-    restaurants.insert(0, Restaurant.fromJson(item));
+    Restaurant restaurant = Restaurant.fromJson(item);
+    print(restaurant.position);
+    restaurants.add(restaurant);
   }
   return restaurants;
 }
@@ -214,7 +218,9 @@ Future<List<Restaurant>> fetchRestaurantsByCategoryID(
   print(res);
   List data = res['restaurant'];
   for (var item in data) {
-    restaurants.insert(0, Restaurant.fromJson(item));
+    Restaurant restaurant = Restaurant.fromJson(item);
+    print(restaurant.position);
+    restaurants.add(restaurant);
   }
   return restaurants;
 }
@@ -232,7 +238,9 @@ Future<List<Restaurant>> fetchRestaurantsByRestaurantName(
   print(res);
   List data = res['restaurant'];
   for (var item in data) {
-    restaurants.insert(0, Restaurant.fromJson(item));
+    Restaurant restaurant = Restaurant.fromJson(item);
+    print(restaurant.position);
+    restaurants.add(restaurant);
   }
   return restaurants;
 }
@@ -246,7 +254,9 @@ Future<List<Restaurant>> fetchRestaurantsBySearch(String word) async {
   print(res);
   List data = res['restaurant'];
   for (var item in data) {
-    restaurants.insert(0, Restaurant.fromJson(item));
+    Restaurant restaurant = Restaurant.fromJson(item);
+    print(restaurant.position);
+    restaurants.add(restaurant);
   }
   return restaurants;
 }

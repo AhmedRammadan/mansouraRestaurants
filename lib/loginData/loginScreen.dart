@@ -191,7 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
           login.password.length > 4) {
         progress(context: context, isLoading: true);
         bool _isLogin = await login.setLogin();
-        progress(context: context, isLoading: false);
+         progress(context: context, isLoading: false);
         if (_isLogin) {
           print("BoooooooooooooM");
           Navigator.pushReplacement(context,
@@ -203,19 +203,12 @@ class _LoginScreenState extends State<LoginScreen> {
               errorU = AppLocalizations.of(context).translate(
                   "This account is not already registered"); //'هذا الحساب غير مسجل من قبل';
               break;
-            case 'owner_password':
+            case 'password':
               errorPassword = true;
               errorP = AppLocalizations.of(context).translate(
                   "The password is incorrect"); //'كلمة المرور غير صحيحة';
               break;
-            case 'notUserOrDelivery':
-              errorPassword = true;
-              errorP = AppLocalizations.of(context).translate(
-                  "This account is not a customer or delivery"); //'كل
-              errorUser = true;
-              errorU = AppLocalizations.of(context).translate(
-                  "This account is not a customer or delivery"); //'هذا الحساب غير مسجل من قبل';مة المرور غير صحيحة';
-              break;
+
           }
           setState(() {});
         }

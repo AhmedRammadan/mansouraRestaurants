@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:mansourarestaurants/contact_us.dart';
 import 'package:mansourarestaurants/general.dart';
-import 'package:mansourarestaurants/models/category.dart';
 import 'package:mansourarestaurants/models/restaurant.dart';
-import 'package:mansourarestaurants/user/restaurantDetails.dart';
 import 'package:mansourarestaurants/widget/myAppbar.dart';
 import 'package:mansourarestaurants/widget/socialMedia.dart';
-import '../general.dart';
-import '../lang/app_localizations.dart';
-import 'drawer.dart';
-import 'home.dart';
-import 'searchScreen.dart';
+import '../../general.dart';
+import '../../lang/app_localizations.dart';
+import 'RestaurantProfileDetails.dart';
+import '../drawer.dart';
 
-class RestaurantScreen extends StatefulWidget {
+class RestaurantProfileScreen extends StatefulWidget {
   Restaurant restaurant;
 
-  RestaurantScreen(this.restaurant);
+  RestaurantProfileScreen(this.restaurant);
 
   @override
-  _RestaurantScreenState createState() => _RestaurantScreenState();
+  _RestaurantProfileScreenState createState() => _RestaurantProfileScreenState();
 }
 
-class _RestaurantScreenState extends State<RestaurantScreen> {
+class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
   GlobalKey<RefreshIndicatorState> _refreshIndicatorkey =
       GlobalKey<RefreshIndicatorState>();
 
@@ -41,8 +37,8 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
     return Scaffold(
       backgroundColor: accentColor,
       key: _key,
-      drawer: userDrawer(),
-      bottomNavigationBar: SocialMedia2(),
+      drawer: RestaurantDrawer(),
+      bottomNavigationBar: SocialMedia(),
       body: RefreshIndicator(
         key: _refreshIndicatorkey,
         onRefresh: _onRefresh,
@@ -136,7 +132,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                   image: DecorationImage(
                                       image: widget.restaurant.caver.isNotEmpty
                                           ? NetworkImage(
-                                              "$domainImages/restaurant/caver/${widget.restaurant.caver}")
+                                          "$domainImages/restaurant/caver/${widget.restaurant.caver}")
                                           : AssetImage("assets/final-002.png"),
                                       fit: BoxFit.fill),
                                 ),
@@ -151,11 +147,11 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                   ),
                                   padding: EdgeInsets.only(
                                     top:
-                                        MediaQuery.of(context).size.height / 11,
+                                    MediaQuery.of(context).size.height / 11,
                                   ),
                                   width: MediaQuery.of(context).size.width,
                                   height:
-                                      MediaQuery.of(context).size.height / 2.5,
+                                  MediaQuery.of(context).size.height / 2.5,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                         bottomRight: Radius.circular(25),
@@ -175,8 +171,8 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                       Container(
                                         margin: EdgeInsets.symmetric(
                                           horizontal: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
+                                              .size
+                                              .width /
                                               3.3,
                                         ),
                                         width: 100,
@@ -205,7 +201,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                                   _item(
                                                       title: appLocalizations
                                                           .translate(
-                                                              "Appointments"),
+                                                          "Appointments"),
                                                       // d: "${AppLocalizations.of(context).translate("from")} ${widget.restaurant.startTime}  ${AppLocalizations.of(context).translate("to")} ${widget.restaurant.endTime}"),
                                                       d: "${widget.restaurant.startTime} : ${widget.restaurant.endTime}"),
                                                   _item(
@@ -213,13 +209,13 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                                           .translate("Delivery"),
                                                       d: "${widget.restaurant.deliveryTime} ${AppLocalizations.of(context).translate("minute")}"),
                                                   widget.restaurant.desc
-                                                          .isNotEmpty
+                                                      .isNotEmpty
                                                       ? _item(
-                                                          title: appLocalizations
-                                                              .translate(
-                                                                  "Description"),
-                                                          d: "${widget.restaurant.desc}",
-                                                          isDesc: true)
+                                                      title: appLocalizations
+                                                          .translate(
+                                                          "Description"),
+                                                      d: "${widget.restaurant.desc}",
+                                                      isDesc: true)
                                                       : Container(),
                                                 ],
                                               ),
@@ -230,7 +226,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                               Navigator.of(context).push(
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          RestaurantDetails(
+                                                          RestaurantProfileDetails(
                                                               widget
                                                                   .restaurant)));
                                             },
@@ -238,13 +234,13 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                               alignment: Alignment.center,
 
                                               width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
+                                                  .size
+                                                  .width /
                                                   2,
                                               height: 35,
                                               decoration: BoxDecoration(
                                                 borderRadius:
-                                                    BorderRadius.circular(25),
+                                                BorderRadius.circular(25),
                                                 color: textColor,
                                               ),
                                               child: Text(

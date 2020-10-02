@@ -6,6 +6,26 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future<bool> setLogout() async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   await sharedPreferences.setBool('isLogin', false);
+  await sharedPreferences.setString('id', "");
+  await sharedPreferences.setString('position', "");
+  await sharedPreferences.setString('name', "");
+  await sharedPreferences.setString('desc', "");
+  await sharedPreferences.setString('logo', "");
+  await sharedPreferences.setString('caver', "");
+  await sharedPreferences.setString('rate', "");
+  await sharedPreferences.setString('startTime', "");
+  await sharedPreferences.setString('endTime', "");
+  await sharedPreferences.setString('deliveryTime', "");
+  await sharedPreferences.setString('categoryID', "");
+  await sharedPreferences.setString('categoryNameEN', "");
+  await sharedPreferences.setString('categoryNameAR', "");
+  await sharedPreferences.setString('ownerEmail', "");
+  await sharedPreferences.setString('ownerPassword', "");
+  await sharedPreferences.setString('ownerName', "");
+  await sharedPreferences.setString('ownerNumber', "");
+  await sharedPreferences.setString('isActivate', "");
+  await sharedPreferences.setString('isFamous', "");
+  await sharedPreferences.setString('createDate', "");
   return true;
 }
 

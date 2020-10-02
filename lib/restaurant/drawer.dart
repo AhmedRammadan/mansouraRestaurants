@@ -7,8 +7,8 @@ import 'package:mansourarestaurants/lang/LocaleHelper.dart';
 import 'package:mansourarestaurants/lang/app_localizations.dart';
 
 import 'package:mansourarestaurants/loginData/loginScreen.dart';
+import 'package:mansourarestaurants/user/home.dart';
 import 'package:mansourarestaurants/widget/socialMedia.dart';
-
 
 class RestaurantDrawer extends StatefulWidget {
   @override
@@ -49,13 +49,8 @@ class _userDrawerState extends State<RestaurantDrawer> {
                             .translate("contact us"),
                         isImage: true),
                     _item(
-                        index: 0,
-                        text: AppLocalizations.of(context)
-                            .translate("addRestaurant"),
-                        icon: Icons.restaurant),
-                    _item(
                         index: 4,
-                        text: AppLocalizations.of(context).translate("login"),
+                        text: AppLocalizations.of(context).translate("logout"),
                         icon: Icons.exit_to_app),
                     _item(
                         index: 3,
@@ -115,7 +110,6 @@ class _userDrawerState extends State<RestaurantDrawer> {
           //Navigator.pop(context);
           switch (index) {
             case 0:
-
               break;
             case 1:
               Navigator.of(context)
@@ -135,8 +129,9 @@ class _userDrawerState extends State<RestaurantDrawer> {
               shareApp();
               break;
             case 4:
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => LoginScreen()));
+              await setLogout();
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => UserHome()));
               break;
           }
         },

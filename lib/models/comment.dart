@@ -15,7 +15,7 @@ class Comment {
     return Comment(
       commentId: json['comment_id'],
       resturantId: json['resturant_id'],
-      comment: json['comment'],
+      comment: json['comment'].toString().replaceAll("amp;", ''),
       star: json['star'],
     );
   }
@@ -37,6 +37,19 @@ class Comment {
     if (!res['error']) {
       return true;
     }
+    return false;
+  }
+}
+Future<bool> deleteComment({String comment_id}) async {
+  http.Response response =
+  await http.post("$domain/comment/delete.php", body: {"comment_id": comment_id});
+  print(response.body);
+  var res = json.decode(response.body);
+  print(res);
+
+  if (!res['error']) {
+    return true;
+  } else {
     return false;
   }
 }
