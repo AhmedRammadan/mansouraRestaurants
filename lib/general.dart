@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mansourarestaurants/lang/app_localizations.dart';
 import 'package:mansourarestaurants/models/restaurant.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -7,16 +8,17 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'package:share/share.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 const String logo = 'assets/final-05.png';
-//const url = "http://192.168.64.2/mansoura-restaurants.com";
-const url = "https://mansoura-restaurants.com";
+const url = "http://192.168.64.3/mansoura-restaurants";
+//const url = "https://mansoura-restaurants.com";
 const String domain = '$url/system/app';
 const String domainImages = '$url/upload';
 const packageName = 'com.mansourarestaurants';
 const Color accentColor = Color(0xffffcb05);
 const Color textColor = Color(0xff5c1649);
 bool connected = false;
-Restaurant globalRestaurant =Restaurant();
+Restaurant globalRestaurant = Restaurant();
 launchURL(phoneNumber) async {
   String url = 'tel:$phoneNumber';
   if (await canLaunch(url)) {
@@ -26,10 +28,7 @@ launchURL(phoneNumber) async {
   }
 }
 
-
-
-
- showToastMSG(msg){
+showToastMSG(msg) {
   return Fluttertoast.showToast(
       msg: "$msg",
       toastLength: Toast.LENGTH_SHORT,
@@ -37,9 +36,9 @@ launchURL(phoneNumber) async {
       timeInSecForIosWeb: 1,
       backgroundColor: accentColor,
       textColor: Colors.white,
-      fontSize: 16.0
-  );
+      fontSize: 16.0);
 }
+
 Future<void> ackAlert(
     {BuildContext context,
     String title,
@@ -52,8 +51,14 @@ Future<void> ackAlert(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text(title,style: TextStyle(fontFamily: ""),),
-        content: Text(content,style: TextStyle(fontFamily: ""),),
+        title: Text(
+          title,
+          style: TextStyle(fontFamily: ""),
+        ),
+        content: Text(
+          content,
+          style: TextStyle(fontFamily: ""),
+        ),
         actions: <Widget>[
           FlatButton(
             child: Text(textButton),
@@ -102,6 +107,7 @@ Future<void> notConnected({BuildContext context}) {
 }
 
 Future<void> done({BuildContext context}) {
+  AppLocalizations appLocalizations = AppLocalizations.of(context);
   return showDialog<void>(
     barrierDismissible: false,
     context: context,
@@ -127,12 +133,12 @@ Future<void> done({BuildContext context}) {
               ),
             ),
             Text(
-              'Thank You',
+              appLocalizations.translate('Thank You'),
               textAlign: TextAlign.center,
               style: TextStyle(color: accentColor, fontSize: 25),
             ),
             Text(
-              'We will communicate with you',
+              appLocalizations.translate('We will communicate with you'),
               textAlign: TextAlign.center,
               style: TextStyle(color: accentColor),
             ),
@@ -140,7 +146,7 @@ Future<void> done({BuildContext context}) {
         ),
         actions: <Widget>[
           FlatButton(
-            child: Text('OK'),
+            child: Text(appLocalizations.translate('OK')),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -185,6 +191,7 @@ progress({BuildContext context, bool isLoading}) {
     Navigator.pop(context);
   }
 }
+
 progress2({BuildContext context, bool isLoading}) {
   if (isLoading) {
     return showDialog<void>(

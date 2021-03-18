@@ -34,7 +34,13 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
   }
 
   GlobalKey<ScaffoldState> _key = GlobalKey();
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    widget.restaurant.visitor();
 
+  }
   @override
   Widget build(BuildContext context) {
     AppLocalizations appLocalizations = AppLocalizations.of(context);
@@ -52,64 +58,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
               Container(
                   margin: EdgeInsets.only(top: 50, right: 2, left: 10),
                   child: MyAppbar(context, _key, false)),
-              /*    Container(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (c) => SearchScreen(
-                              category: Category(
-                                  categoryNameAR: '', categoryNameEN: ''),
-                            )));
-                  },
-                  child: Container(
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          height: 40,
-                          padding: EdgeInsets.only(right: 5, left: 5),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              color: textColor,
-                              borderRadius:
-                                  appLocalizations.locale.languageCode == "en"
-                                      ? BorderRadius.only(
-                                          topLeft: Radius.circular(10),
-                                          bottomLeft: Radius.circular(10))
-                                      : BorderRadius.only(
-                                          topRight: Radius.circular(10),
-                                          bottomRight: Radius.circular(10))),
-                          child: Text(
-                            "OK",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: accentColor, fontSize: 20),
-                          ),
-                        ),
 
-                       Padding(
-                      padding: EdgeInsets.only(right: 10,left: 10),
-                      child: Image.asset(
-                          "assets/Mag Glass.png",
-                          height: 20,
-                        ),
-                        ),
-                         Text(
-                            appLocalizations.translate("Search"),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.grey.withOpacity(.5),
-                                fontSize: 15),
-                          ),
-
-                      ],
-                    ),
-                  ),
-                ),
-              ),*/
               Container(
                 child: Stack(
                   children: <Widget>[
@@ -273,13 +222,28 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                         color: textColor,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
-                      child: Text(
-                        widget.restaurant.name,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            widget.restaurant.name,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                           "${appLocalizations
+                               .translate(
+                               "Views")} - ${widget.restaurant.visitorNum}",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: '',
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      )
                     ),
                   ],
                 ),

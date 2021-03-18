@@ -35,80 +35,102 @@ class IntroScreenState extends State<IntroScreen> {
     _getSlider();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    CarouselSlider _carouselSlider = CarouselSlider(
-      onPageChanged: (index) {
-        setState(() {
-          _current = index;
-        });
-      },
-      items: sliders.map((SliderModel sliderModel) {
-        return InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ShowImage(
-                  url: '$domainImages/slider/${sliderModel.name}',
+  CarouselSlider _carouselSlider() => CarouselSlider(
+        onPageChanged: (index) {
+          setState(() {
+            _current = index;
+          });
+        },
+        items: sliders.map((SliderModel sliderModel) {
+          return InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ShowImage(
+                    url: '$domainImages/slider/${sliderModel.name}',
+                  ),
                 ),
-              ),
-            );
-          },
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              color: textColor,
-              image: DecorationImage(
-                image: NetworkImage(
-                  '$domainImages/slider/${sliderModel.name}',
-                ),
+              );
+            },
+            child: Container(
+              child: FadeInImage.assetNetwork(
+                placeholder: logo,
                 fit: BoxFit.fill,
+                image: '$domainImages/slider/${sliderModel.name}',
+              ),
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: textColor,
               ),
             ),
+          );
+        }).toList(),
+        height: MediaQuery.of(context).size.height - 40,
+        aspectRatio: 0,
+        viewportFraction: .999,
+        initialPage: 0,
+        enableInfiniteScroll: true,
+        reverse: false,
+        autoPlay: true,
+        autoPlayInterval: Duration(seconds: 3),
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        autoPlayCurve: Curves.fastOutSlowIn,
+        pauseAutoPlayOnTouch: Duration(seconds: 10),
+        scrollDirection: Axis.horizontal,
+      );
+  Widget _loadingWidget() {
+    return Stack(
+      children: [
+        Align(
+          child: Container(
+            alignment: Alignment.bottomCenter,
+            height: MediaQuery.of(context).size.height - 40,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              image: DecorationImage(image: AssetImage(logo)),
+              color: textColor,
+            ),
           ),
-        );
-      }).toList(),
-      height: MediaQuery.of(context).size.height - 40,
-      aspectRatio: 0,
-      viewportFraction: .999,
-      initialPage: 0,
-      enableInfiniteScroll: true,
-      reverse: false,
-      autoPlay: true,
-      autoPlayInterval: Duration(seconds: 3),
-      autoPlayAnimationDuration: Duration(milliseconds: 800),
-      autoPlayCurve: Curves.fastOutSlowIn,
-      pauseAutoPlayOnTouch: Duration(seconds: 10),
-      scrollDirection: Axis.horizontal,
+          alignment: Alignment.center,
+        ),
+        Align(
+          child: Container(
+            height: MediaQuery.of(context).size.height - 300,
+            width: MediaQuery.of(context).size.width,
+            alignment: Alignment.bottomCenter,
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(accentColor),
+            ),
+          ),
+        ),
+      ],
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: slidersIsLading
-          ? Container(
-              color: textColor, height: MediaQuery.of(context).size.height)
-          : Stack(
-              children: <Widget>[
-                Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                  _carouselSlider,
+      body: Stack(
+        children: <Widget>[
+          Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+            slidersIsLading ? _loadingWidget() : _carouselSlider(),
+            Container(
+              color: textColor,
+              child: Row(
+                children: [
                   Container(
-                    color: textColor,
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 30,
-                          alignment: Alignment.center,
-                          margin:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => UserHome()));
-                            },
-                            child: AppLocalizations.of(context)
-                                .locale
-                                .languageCode ==
-                                "en"
-                                ? Row(
+                    height: 30,
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => UserHome()));
+                      },
+                      child: AppLocalizations.of(context).locale.languageCode ==
+                              "en"
+                          ? Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 Text(
@@ -126,7 +148,7 @@ class IntroScreenState extends State<IntroScreen> {
                                 ),
                               ],
                             )
-                                : Row(
+                          : Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 Image.asset(
@@ -144,9 +166,11 @@ class IntroScreenState extends State<IntroScreen> {
                                 ),
                               ],
                             ),
-                          ),
-                        ),
-                        Expanded(
+                    ),
+                  ),
+                  slidersIsLading
+                      ? Container()
+                      : Expanded(
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Container(
@@ -166,20 +190,20 @@ class IntroScreenState extends State<IntroScreen> {
                                         color: _current == index
                                             ? accentColor //Color.fromRGBO(0, 0, 0, 0.9)
                                             : Colors
-                                            .white //Color.fromRGBO(0, 0, 0, 0.4),
-                                    ),
+                                                .white //Color.fromRGBO(0, 0, 0, 0.4),
+                                        ),
                                   );
                                 }).toList(),
                               ),
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                ]),
-              ],
+                ],
+              ),
             ),
+          ]),
+        ],
+      ),
     );
   }
 }

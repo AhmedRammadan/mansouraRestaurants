@@ -149,8 +149,12 @@
   "type": "نوع",
   "Or you can enter your current location using GPS": "او يمكنك ادخال موقعك الحالي باستخدام GPS ",
   "name is required": "  مطلوب اسم",
-  "Latitude is required":  "  مطلوب خط العرض",
-  "Longitude is required":  "  مطلوب خط الطول",
-  "Latitude":  "   خط العرض",
-  "Longitude":  "   خط الطول"
+  "Latitude is required": "  مطلوب خط العرض",
+  "Longitude is required": "  مطلوب خط الطول",
+  "Latitude": "   خط العرض",
+  "Longitude": "   خط الطول",
+  "OK": "نعم",
+  "Thank You": "شكرا لك",
+  "We will communicate with you": "سوف نتواصل معك",
+  "Views": "المشاهدة"
 }

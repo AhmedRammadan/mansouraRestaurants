@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -129,6 +128,8 @@ class _AddRestaurantState extends State<AddRestaurant> {
                                     setState(() {});
                                   }
                                 }
+                                print(
+                                    "=================================111111=====");
                               },
                               child: restaurant.logoFile == null
                                   ? Image.asset(
@@ -506,6 +507,10 @@ class _AddRestaurantState extends State<AddRestaurant> {
                                     await restaurant.create();
                                     progress(
                                         context: context, isLoading: false);
+                                    Navigator.of(context).pop();
+                                    done(
+                                      context: context,
+                                    );
                                   }
                                 },
                                 child: Container(
@@ -583,10 +588,12 @@ class _AddRestaurantState extends State<AddRestaurant> {
     } else if (cReport.text.isEmpty) {
       message("Complaints number is required");
       return false;
-    } else if (restaurant.addressInMap.isEmpty) {
-      message("Address is required on the map");
-      return false;
-    } else if (restaurant.meunFiles.isEmpty) {
+    }
+    // else if (restaurant.addressInMap.isEmpty) {
+    //   message("Address is required on the map");
+    //   return false;
+    // }
+    else if (restaurant.meunFiles.isEmpty) {
       message("Menu photos are required to be attached");
       return false;
     }

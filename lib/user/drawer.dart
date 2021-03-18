@@ -60,10 +60,10 @@ class _userDrawerState extends State<userDrawer> {
                         text: AppLocalizations.of(context)
                             .translate("addRestaurant"),
                         icon: Icons.restaurant),
-                      _item(
-                          index: 4,
-                          text: AppLocalizations.of(context).translate("login"),
-                          icon: Icons.exit_to_app),
+                    _item(
+                        index: 4,
+                        text: AppLocalizations.of(context).translate("login"),
+                        icon: Icons.exit_to_app),
                     _item(
                         index: 3,
                         text:

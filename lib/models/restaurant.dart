@@ -28,8 +28,9 @@ class Restaurant {
   String ownerEmail;
   String ownerPassword;
   String ownerName;
-  String ownerNumber;
   String isActivate;
+  String ownerNumber;
+  String visitorNum;
   String isFamous;
   String createDate;
   List<Numbers> numbers;
@@ -60,6 +61,7 @@ class Restaurant {
       this.ownerPassword = '',
       this.ownerName = '',
       this.ownerNumber = '',
+      this.visitorNum = '',
       this.isActivate = '',
       this.isFamous = '',
       this.createDate = '',
@@ -91,6 +93,7 @@ class Restaurant {
       ownerPassword: json['owner_password'],
       ownerName: json['owner_name'],
       ownerNumber: json['owner_number'],
+      visitorNum: json['visitor_num'],
       isActivate: json['is_activate'],
       isFamous: json['is_famous'],
       createDate: json['create_date'],
@@ -120,12 +123,23 @@ class Restaurant {
       ownerPassword: json['owner_password'],
       ownerName: json['owner_name'].toString().replaceAll("amp;", ''),
       ownerNumber: json['owner_number'].toString().replaceAll("amp;", ''),
+      visitorNum: json['visitor_num'].toString().replaceAll("amp;", ''),
       isActivate: json['is_activate'],
       isFamous: json['is_famous'],
       createDate: json['create_date'],
       numbers: getNumbers(json['numbers']),
       maps: getMaps(json['maps']),
     );
+  }
+   visitor() async {
+    http.Response response =
+    await http.post("$domain/restaurant/vistorNumber.php", body: {"resturant_id": this.id});
+    print(response.body);
+    var res = json.decode(response.body);
+if(response.statusCode==200){
+  this.visitorNum = res['visitor_num'];
+}
+return ;
   }
 
   create() async {
@@ -149,6 +163,7 @@ class Restaurant {
       'category_id': this.category.categoryId,
       'owner_name': this.ownerName,
       'owner_number': this.ownerNumber,
+      'visitor_num': this.visitorNum,
       'delivery_number': this.deliveryNumber,
       'complaint_number': this.complaintNumber,
       'map_name': this.addressInMap,

@@ -22,10 +22,12 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MinimumOSVersion</key>
+	<string>8.0</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app needs to access Location</string>
+	<string>App requires Location to register</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs to access Location</string>
+	<string>App requires Location to register</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app needs to access photo library</string>
 	<key>UILaunchStoryboardName</key>

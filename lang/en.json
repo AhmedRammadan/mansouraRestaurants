@@ -151,7 +151,10 @@
   "name is required": "name is required",
   "Latitude is required": "Latitude is required",
   "Longitude is required": "Longitude is required",
-  "Latitude":  "Latitude",
-  "Longitude":  "Longitude"
-
+  "Latitude": "Latitude",
+  "Longitude": "Longitude",
+  "OK": "OK",
+  "Thank You": "Thank You",
+  "We will communicate with you": "We will communicate with you",
+  "Views": "Views"
 }
